@@ -7,7 +7,7 @@ const Cart = () => {
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     return (
-        <div className="cart">
+        <div className="cartin">
             <h2>Your Cart</h2>
             {cart.length === 0 ? (
                 <p>Your cart is empty</p>

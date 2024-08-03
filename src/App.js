@@ -1,4 +1,4 @@
-// src/App.js
+import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -9,6 +9,7 @@ import ProductPage from './Pages/ProductPage';
 import NotFoundPage from './Pages/NotFoundPage';
 import CartContextProvider from './context/CartContext';
 import FavoritesContextProvider from './context/FavoritesContext';
+import Smartphones from './Pages/Smartphones';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     <Navbar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/smartphones" element={<Smartphones />} />
                         <Route path="/cart" element={<CartPage />} />
                         <Route path="/favorites" element={<FavoritesPage />} />
                         <Route path="/product/:id" element={<ProductPage />} />
