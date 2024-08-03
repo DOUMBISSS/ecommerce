@@ -9,13 +9,13 @@ export const cartReducer = (state, action) => {
             } else {
                 return [...state, { ...action.payload, quantity: 1 }];
             }
-        case 'REMOVE_FROM_CART':
-            return state.map(item =>
-                item._id === action.payload ? { ...item, quantity: item.quantity - 1 } : item
-            ).filter(item => item.quantity > 0);
-        case 'CLEAR_CART':
-            return [];
-        default:
-            return state;
-    }
+            case 'REMOVE_FROM_CART':
+                return state.map(item =>
+                    item._id === action.payload ? { ...item, quantity: item.quantity - 1 } : item
+                ).filter(item => item.quantity > 0);
+            case 'CLEAR_CART':
+                return [];
+            default:
+                return state;
+        }
 };
