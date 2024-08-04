@@ -5,7 +5,7 @@ import Cart from '../components/Cart';
 const CartPage = () => {
     return (
         <div>
-            <h1>Cart Page</h1>
+            {/* <h1>Cart Page</h1> */}
             <Cart />
         </div>
     );

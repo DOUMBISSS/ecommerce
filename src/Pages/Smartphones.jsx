@@ -192,11 +192,12 @@ export default function Smartphones (){
                                 <p className="info">2 en stock</p>
                                <p className='product__price'>{product.price} FCFA</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
-                               <button className='btn__add' onClick={() => cartDispatch({ type: 'ADD_TO_CART', payload: product })}>+</button>
-                               
-                               
-                                </div>  
+                                <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                                <button className='btn__add' onClick={() => cartDispatch({ type: 'ADD_TO_CART', payload: product })}>+</button>
+                                </div>
+                                <div>
+                                <button className='btn__fav' onClick={() => favoritesDispatch({ type: 'ADD_TO_FAVORITES', payload: product })}>Ajouter Favoris</button>
+                                </div>
                         </div>
                     </div> 
 

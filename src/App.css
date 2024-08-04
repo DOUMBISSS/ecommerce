@@ -654,7 +654,7 @@ transition: ease-in 1.2s;
 }
 .featured__product__cards{
   width: 300px;
-  height: 500px;
+  height: 520px;
   border: 1px solid gainsboro;
   border-radius: 0.4rem;
   padding: 0.7rem;
@@ -719,6 +719,14 @@ transition: ease-in 1.2s;
 }
 .btn__add{
   width: 27%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  background-color:rgb(15, 52, 90);
+  color: white;
+  font-weight: bold;
+}
+.btn__fav{
+  width: 100%;
   padding: 0.5rem;
   border-radius: 0.3rem;
   background-color:rgb(15, 52, 90);
@@ -842,6 +850,7 @@ transition: ease-in 1.2s;
   /* justify-content: center; */
   /* border: #000 1px solid ; */
 }
+
 .nav__content{
   width: 50%;
   display: flex;
@@ -1200,8 +1209,8 @@ transition: ease-in 1.2s;
   padding: 0 2rem;
  }
  .main--orders--container--right--header{
-  border-bottom: 1px solid gainsboro;
-  margin-bottom: 0.7rem;
+  /* border-bottom: 1px solid gainsboro; */
+  margin: 1rem 0;
   font-weight: bold;
  }
  .main--orders--container--right{
@@ -1250,10 +1259,15 @@ transition: ease-in 1.2s;
 .article__details__order__content{
   width: 100%;
   display: flex;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   align-items: center;
   justify-content: space-between;
   /* border: 1px solid gainsboro; */
+}
+.article__total__price{
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 0!important;
 }
 .payment__part{
   width: 100%;
@@ -1814,11 +1828,6 @@ input[type='search']:hover{
     color: #0069ff;
 }
 
-nav {
-  /* position: fixed; */
-  width: 100%;
-  background: #070D1F;
-}
 
 /* .wrapper {
   position: relative;
@@ -1998,7 +2007,7 @@ nav {
   align-items: center;
   justify-content: center;
   position:absolute;
-  top: 0;
+  top: -0.7rem;
   right: 0;
   left:1.1rem;
   cursor: pointer;
@@ -2063,6 +2072,12 @@ nav {
 .cart-item .item-details {
 	flex: 1;
 	display: inline;
+}
+.btn__clear{
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 @media only screen and (max-width:576px) {
   header{
