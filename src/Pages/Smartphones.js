@@ -59,7 +59,7 @@ export default function Smartphones (){
 
 
     const filterResult = (catItem)=>{
-        const filterData = Smartphones.filter((Smartphone) =>  Smartphone.marque === catItem )
+        const filterData = products.filter((products) =>  products.marque === catItem )
             setCat(filterData);
             setDis(false);
     }
@@ -179,7 +179,7 @@ export default function Smartphones (){
                         <div className='product__cards__header'>
                         <p className='sales'>{product.title}</p>
                            <div className='featured__product__cards__header__images'>
-                           <img src={product.image} alt={product.title} />
+                           <Link to={`/product/${product._id}`}><img src={product.image} alt={product.title} /></Link>
                            {/* <Link to={`/detail/${product._id}`}><img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="" /></Link> */}
                            </div>
                         </div>
@@ -192,7 +192,7 @@ export default function Smartphones (){
                                 <p className="info">2 en stock</p>
                                <p className='product__price'>{product.price} FCFA</p>
                                <div className='button--block'>
-                                <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                                <Link className='link__btn' to={`/product/${product._id}`}><button className='btn__buy'>Acheter</button></Link>
                                 <button className='btn__add' onClick={() => cartDispatch({ type: 'ADD_TO_CART', payload: product })}>+</button>
                                 </div>
                                 <div>
