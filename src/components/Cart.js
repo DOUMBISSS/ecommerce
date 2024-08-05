@@ -123,7 +123,7 @@ const Cart = () => {
                 </div>
         </div>     
     </div>
-    <button className='btn__payment'>Procéder au paiement</button>  
+    <Link to='*'><button className='btn__payment'> Procéder au paiement</button> </Link> 
 
         </div>
         <Footer/>

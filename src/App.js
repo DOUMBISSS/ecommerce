@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState,useEffect }  from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './Pages/HomePage';
@@ -25,13 +25,37 @@ import Fashion from './Pages/Fashion';
 import Game from './Pages/Game';
 import Electronique from './Pages/Electronique';
 import Contact from './Pages/Contact';
+import { UserProvider } from './context/UserContext';
+import Login from './components/Login';
 
 const App = () => {
+
+    const [user, setUser] = useState(null);
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  };
+
+  // Check if user is already logged in
+React.useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
     return (
+        <UserProvider>
         <CartContextProvider>
             <FavoritesContextProvider>
                 <Router>
-                    <Navbar />
+                    <Navbar user={user} onLogout={handleLogout} />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/smartphones" element={<Smartphones />} />
@@ -54,10 +78,12 @@ const App = () => {
                         <Route path='/formulaire' element={<Formulaire/>} />
                         {/* <Route path="/product/:id" element={<ProductPage />} /> */}
                         <Route path="*" element={<NotFoundPage />} />
+                        <Route path="/login" element={<Login onLogin={handleLogin} />}  />
                     </Routes>
                 </Router>
             </FavoritesContextProvider>
         </CartContextProvider>
+        </UserProvider>
     );
 };
 

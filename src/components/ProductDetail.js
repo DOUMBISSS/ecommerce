@@ -53,7 +53,7 @@ const ProductDetail = () => {
                         <p className='rating'>3 ratings</p>
                         <p className='availability'>En stock</p>
                         <p className='warranty'> Garantie: 1 mois </p>
-                        <p className="price"> {product.price}</p>
+                        <p className="price"> {product.price} F CFA</p>
                         {/* <div className='btn__quantity__block'>
                         <button className='btn__quantity__minus' onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: product._id })}>-</button>
                         <p className='btn__quantity'>{product.quantity}</p>
@@ -72,7 +72,7 @@ const ProductDetail = () => {
                 </div>
                 <div className='section__comment__content'>
                         <div className='section__comment__left__part'>
-
+                          <button className='btn__comment'>Laisser un commentaire</button>
                         </div>
                         <div className='section__comment__right__part'>
                            <div className='section__comment__right__content'>
@@ -80,6 +80,7 @@ const ProductDetail = () => {
                             <h5>Note 5/20</h5>
                             <h6>un refrigerateur impecable. Glace et forme</h6>
                             <p>02/20/2024 par : Doumbia Fode</p>
+
                            </div>
                         </div>
                     </div>

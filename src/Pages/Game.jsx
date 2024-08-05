@@ -250,27 +250,29 @@ export default function Game (){
                 <div className="part__products">
 
        <div className="part__accessories">
-          {items.map((item) => <div key={item.id}className='featured__product__cards'>
+       {products.map((product) => <div key={product._id}className='featured__product__cards'>
                         <div className='product__cards__header'>
-                        <p className='sales'>{item.title}</p>
+                        <p className='sales'>{product.title}</p>
                            <div className='featured__product__cards__header__images'>
-                           <Link to={`/detail/${item.id}`}><img src={`${process.env.PUBLIC_URL}/${item.img}`} alt="" /></Link>
+                           <Link to={`/product/${product._id}`}><img src={product.image} alt={product.title} /></Link>
+                           {/* <Link to={`/detail/${product._id}`}><img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="" /></Link> */}
                            </div>
                         </div>
                         <div className='featured__product__cards__body'>
                                 {/* <h5 className='product__title'>{article.title}</h5> */}
-                                <p className='product__desc'>{item.description}</p>
-                                <p className='brand'>Apple</p>
+                                <p className='product__desc'>{product.description}</p>
+                                <p className='brand'>{product.marque}</p>
                                <h5 className='product__categorie'>Smartphone</h5>
                                <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
                                 <p className="info">2 en stock</p>
-                               <p className='product__price'>{item.price} FCFA</p>
+                               <p className='product__price'>{product.price} FCFA</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
-                               <button className='btn__add'>+</button>
-                               
-                               
-                                </div>  
+                                <Link className='link__btn' to={`/product/${product._id}`}><button className='btn__buy'>Acheter</button></Link>
+                                <button className='btn__add' onClick={() => cartDispatch({ type: 'ADD_TO_CART', payload: product })}>+</button>
+                                </div>
+                                <div>
+                                <button className='btn__fav' onClick={() => favoritesDispatch({ type: 'ADD_TO_FAVORITES', payload: product })}>Ajouter Favoris</button>
+                                </div>
                         </div>
                     </div> 
 

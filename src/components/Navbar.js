@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import React, { useContext,useState } from 'react';
+import { UserContext } from '../context/UserContext';
+import { useUser } from '../context/UserContext';
 
-const Navbar = () => {
-    const [user,setUser] = useState("");
+const Navbar = ({ user, onLogout }) => {
   const [nav , setNav] = useState(false);
   const [cartShop , setCartShop] = useState(false);
   const [display,setDisplay]=useState(false);
   const[menu,setMenu]=useState(false);
   const [search,setSearch]=useState("");
+  
 
     const openLog = ()=>{
         setNav(true)
@@ -34,6 +36,13 @@ const Navbar = () => {
     const { cart, dispatch } = useContext(CartContext);
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    // const { user, dispatch } = useContext(UserContext);
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+    };
+
     return (
         <div>
         <div className='navbar'>
@@ -63,7 +72,7 @@ const Navbar = () => {
             <div className='logo--resp'>
               <div className="navbar--logo--resp">
                 {/* <Link to="/"> <img src={`${process.env.PUBLIC_URL}/easy.png`} alt=""/></Link> */}
-                <Link to="/" className='header__title'><h5>ELECTROs<span>SHOP</span></h5></Link>
+                <Link to="/" className='header__title'><h5>ELECTRO<span>SHOP</span></h5></Link>
               </div>
             </div>
           </div>
@@ -71,6 +80,7 @@ const Navbar = () => {
         
           <div className="navbar--right">
           <div className="navbar--right--content">
+          <Link className='liste' to="/store-all"><i className="fa-solid fa-house"></i>  Nos magasins</Link>
                        <div className='icons'>
                        <div>
                        <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i> </Link>
@@ -82,6 +92,14 @@ const Navbar = () => {
                     </div> */}
                        </div>
                        <Link className='liste' to="/loginPage" ><button className="btn--connexion"><i className="fa-solid fa-user"></i> Connexion </button></Link>
+                       {user ? (
+        <>
+          <span>Welcome, {user.name}</span>
+          <button onClick={onLogout}>Logout</button>
+        </>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
                   </div>
           </div>
          </div>
@@ -109,9 +127,7 @@ const Navbar = () => {
                     <Link className='liste' to='/electronique'><i className="fa-solid fa-business-time"></i> Electronique </Link>
                     <Link className='liste' to='/fashion'><i className="fa-solid fa-person-dress"></i> Mode & Accessoires </Link>
                     <Link className='liste' to='/Beauty'><i className="fa-solid fa-wand-magic-sparkles"></i> Beauté & Hygiènes</Link>
-
                     <Link className='liste' to='/game'><i className="fa-solid fa-gamepad"></i> Jeux Vidéo & Consoles </Link>
-      
                     <Link className='liste' to='/houses'><i className="fa-solid fa-house"></i> Maison & Déco </Link>
                     <Link className='liste' to="/favorites"><i class="fa-solid fa-heart"></i> Favorites</Link>
                     <Link className='liste' to='/recherche__piece'><i className="fa-solid fa-magnifying-glass"></i> Trouver la pièce</Link>

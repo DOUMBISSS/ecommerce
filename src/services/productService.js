@@ -22,3 +22,32 @@ export const fetchProductById = async (id) => {
         return null;
     }
 };
+export const fetchProductsByCategory = async (category) => {
+    try {
+        const response = await axios.get(`${API_URL}?category=${category}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Failed to fetch products for category ${category}`, error);
+        return [];
+    }
+};
+
+export const userLogin = async (email, password) => {
+    try {
+        const response = await axios.post(`${API_URL}/login`, { email, password });
+        return response.data;
+    } catch (error) {
+        console.error("Failed to login", error);
+        return null;
+    }
+};
+
+export const userSignup = async (name, email, password) => {
+    try {
+        const response = await axios.post(`${API_URL}/signup`, { name, email, password });
+        return response.data;
+    } catch (error) {
+        console.error("Failed to sign up", error);
+        return null;
+    }
+};

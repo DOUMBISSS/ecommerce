@@ -57,11 +57,6 @@ useEffect(() => {
 
 
           <div className="container">
-            <div className="cart--icon" onClick={showCart}>
-                        <i className="fa-solid fa-bag-shopping"></i>
-                        <div className="counter"></div>
-                    </div>
-
           <div className='col-12 col-md-12' >
           <div className='mb__container'>
          <h2 className='mb__title'>Nouvel arrivage</h2>
