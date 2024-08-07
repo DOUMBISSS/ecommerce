@@ -1,7 +1,7 @@
 // // src/services/productService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/products';
+const API_URL = 'https://back-doc.onrender.com/products';
 
 export const fetchProducts = async () => {
     try {
