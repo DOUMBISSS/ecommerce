@@ -1,29 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import { CartContext } from '../context/CartContext';
 
 
 
 export default function Identification (){
-  let slug = useParams().slug;
   const keys = ["title","categorie","reference"];
   const [search,setSearch]=useState("");
+  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState(items);
+  const { dispatch: cartDispatch } = useContext(CartContext);
 
-  // useEffect(() => {
-  //   fetch('https://back-doc.onrender.com/products')
-  //   .then((res)=>res.json())
-  //   .then((categoryArticles)=>{dispatch(getCatArticlesSmart(categoryArticles))
-  //   })
-  //   .catch(e => { console.log(e)})
-  //   }, [])
-
-  // const addToCart = (id) => {
-  //   dispatch(AddArticle(id))
-  // }
+  useEffect(() => {
+    fetch('https://back-doc.onrender.com/products')
+        .then(response => response.json())
+        .then(items => { setItems(items);
+        })
+        .catch(error => console.error('Error:', error));
+}, []);
 
 const handleSearching = (e)=>{
   setSearch(e.target.value);
 }
-
+console.log(items)
 
     return (
         <div>
@@ -46,35 +45,37 @@ const handleSearching = (e)=>{
          <div className="col-3 col-md-12">
               <div className="identification__part">
 
-              {/* {categoryArticles.filter((categoryArticle) => keys.some((key) => {
+              {items.filter((item) => keys.some((key) => {
             if (search === ""){
                 return 0;
               }
-              else if (categoryArticle[key].toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-                return categoryArticle;
+              else if (item[key].toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                return item;
               }
               return 0;
-                })).map((categoryArticle) => <div key={categoryArticle._id}className='featured__product__cards'>
-                        <div className='featured__product__cards__header'>
-                        <p className='sales'>Promo -20%</p>
-                           <div className='featured__product__cards__header__images'>
-                           <Link to={`/detail/${categoryArticle._id}`}><img src={categoryArticle.image} alt="" /></Link>
-                           </div>
-                        </div>
-                        <div className='featured__product__cards__body'>
-                                <p className='brand'>{categoryArticle.brand}</p>
-                                <h5 className='product__title'>{categoryArticle.title}</h5>
-                               <h5 className='product__categorie'>{categoryArticle.categorie}</h5>
-                               <p className='product__desc'>{categoryArticle.description}</p>
-                               <p className='product__price'>{categoryArticle.price}</p>
-                                <p className="info">2 en stock</p>
-                               <div className='button--block'>
-                               <Link className='link__btn' to={`/detail/${categoryArticle._id}`}><button className='btn__buy'>Acheter</button></Link>
-                               <button className='btn__add'onClick={() => addToCart(categoryArticle)}>+</button>
-                                </div>  
-                        </div>
-                    </div> 
-                        )} */}
+                })).map((item) => <div key={item._id}className='featured__product__cards'>
+                <div className='product__cards__header'>
+                <p className='sales'>{item.title}</p>
+                   <div className='featured__product__cards__header__images'>
+                   {/* <Link to={`/detail/${item._id}`}><img src={`${process.env.PUBLIC_URL}/${item.image}`} alt="" /></Link> */}
+                    <img src={item.image} alt="" />
+                   </div>
+                </div>
+                <div className='featured__product__cards__body'>
+                        {/* <h5 className='product__title'>{article.title}</h5> */}
+                        <p className='product__desc'>{item.description}</p>
+                        <p className='brand'>{item.marque}</p>
+                       <h5 className='product__categorie'>Smartphone</h5>
+                       <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
+                        <p className="info">2 en stock</p>
+                       <p className='product__price'>{item.price} FCFA</p>
+                       <div className='button--block'>
+                       <Link className='link__btn' to={`/product/${item._id}`}><button className='btn__buy'>Acheter</button></Link>
+                        <button className='btn__add' onClick={() => cartDispatch({ type: 'ADD_TO_CART', payload: item })}>+</button>
+                        </div>  
+                </div>
+            </div> 
+                        )}
               </div>
             </div>
         </div>

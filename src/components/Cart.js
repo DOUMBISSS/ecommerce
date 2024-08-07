@@ -1,13 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext ,useState} from 'react';
 import { CartContext } from '../context/CartContext';
 import { FavoritesContext } from '../context/FavoritesContext';
 import Footer from "../Pages/Footer";
 import { Link } from 'react-router-dom';
+import Payment from './Payment';
 
 const Cart = () => {
     const { cart, dispatch } = useContext(CartContext);
     const { dispatch: cartDispatch } = useContext(CartContext);
     const { dispatch: favoritesDispatch } = useContext(FavoritesContext);
+    const [name,setName]= useState();
+    // const [email,setEmail]=useState();
+    const [numero,setNumero]=useState();
+    const [adresse,setAdresse]=useState();
+    const [option,setOption]=useState();
+
+    const handleName = (event)=>{
+        setName(event.target.value)
+      }
+      const handleAdresse =(event)=>{
+          setAdresse(event.target.value)
+      }
+      const handleNumero =(event)=>{
+        setNumero(event.target.value)
+    }
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -67,63 +83,42 @@ const Cart = () => {
                                     <h5>Total:</h5>
                                     <p className='article__total__price'>{totalAmount.toFixed(2)} F CFA </p>
                                 </div>
-                                {/* <div className='article__details__order__content'>
-                                    <h5>Frais de livraison</h5>
-                                    <p>5 000 FCFA</p>
-                                </div> */}
-                                {/* <div className='article__details__order__content'>
-                                    <h5>Coupon</h5>
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
-                                        <label for="floatingInput">Email address</label>
-                                        </div>
-                                </div> */}
-                                {/* <div className='article__details__order__content'>
-                                    <h5>Coupon</h5>
-                                    <p>5 000 FCFA</p>
-                                </div> */}
                             </div>
                             <div className='user__part'>
                                 <h4>Vos coordonnés</h4>
                          <form class="row g-3 needs-validation" novalidate>
                                 <div class="col-md-6">
                                     <label for="validationCustom01" class="form-label">Noms complets</label>
-                                    <input type="text" class="form-control" id="validationCustom01" required />
+                                    <input type="text" class="form-control" id="validationCustom01" required value={name} onChange={handleName}/>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="validationCustom03" class="form-label">Addresse</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required />
+                                    <input type="text" class="form-control" id="validationCustom03" required value={adresse} onChange={handleAdresse}/>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="validationCustom03" class="form-label">Nº Tel</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required />
+                                    <input type="text" class="form-control" id="validationCustom03" required value={numero} onChange={handleNumero}/>
                                 </div>
                         </form>
                             </div>
-                            <div className='payment__part'>
+                            {/* <div className='payment__part'>
                             <h4>Option de paiement</h4>
                             <div className='payment__part__content'>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Cash à la livraison
-                                </label>
-                                </div>
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Paiement par Money
-                                </label>
-                                </div>
+                            <select class="form-select" aria-label="Default select example" >
+                                <option selected>Option de paiement</option>
+                                <option value="1">Cash à la livraison</option>
+                                <option value="2">Paiement par Money</option>
+                                </select>
                             </div>
-                            </div>
+                            </div> */}
+                               <Payment cart={cart} totalAmount={totalAmount} />
                       </div>
                 </div>
         </div>     
     </div>
-    <Link to='*'><button className='btn__payment'> Procéder au paiement</button> </Link> 
+    {/* <Link to='*'><button className='btn__payment'> Procéder au paiement</button> </Link>  */}
 
         </div>
         <Footer/>

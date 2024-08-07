@@ -401,11 +401,6 @@ useEffect(() => {
                 <img src="https://sociam.ci/gestion/brands/partners/electroland-ghana-ltd_logo.png" alt="" />
             </div>
           </div>
-
-      
-         
-
-         
           <Footer/>
         </div>
 

@@ -27,12 +27,21 @@ import Electronique from './Pages/Electronique';
 import Contact from './Pages/Contact';
 import { UserProvider } from './context/UserContext';
 import Login from './components/Login';
+import LogPage from './components/LogPage';
+import Register from './components/Register';
+import CategoryPage from './Pages/CategoryPage';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
 
     const [user, setUser] = useState(null);
 
   const handleLogin = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const handleRegister = (userData) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
   };
@@ -50,6 +59,12 @@ React.useEffect(() => {
     }
   }, []);
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleSelectCategory = (categoryId) => {
+      setSelectedCategory(categoryId);
+  };
+
     return (
         <UserProvider>
         <CartContextProvider>
@@ -58,7 +73,7 @@ React.useEffect(() => {
                     <Navbar user={user} onLogout={handleLogout} />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/smartphones" element={<Smartphones />} />
+                        <Route path="/smartphones" element={<Smartphones selectedCategory={selectedCategory} onSelectCategory={handleSelectCategory}/>} />
                         <Route path="/product/:id" element={<ProductDetail />} />
                         <Route path="/cart" element={<CartPage />} />
                         <Route path="/favorites" element={<FavoritesPage />} />
@@ -76,9 +91,12 @@ React.useEffect(() => {
                         <Route path='/contact' element={<Contact/>} />
                         <Route path='/store-all' element={<Store/>}/>
                         <Route path='/formulaire' element={<Formulaire/>} />
+                        <Route path='/loginPage' element={<LogPage onLogin={handleLogin} />}/>
+                        <Route path="/category/:category" component={CategoryPage} />
                         {/* <Route path="/product/:id" element={<ProductPage />} /> */}
                         <Route path="*" element={<NotFoundPage />} />
                         <Route path="/login" element={<Login onLogin={handleLogin} />}  />
+                        <Route path="/register" element={<Register onRegister={handleRegister} />}  />
                     </Routes>
                 </Router>
             </FavoritesContextProvider>

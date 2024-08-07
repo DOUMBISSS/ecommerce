@@ -37,11 +37,6 @@ const Navbar = ({ user, onLogout }) => {
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
-    // const { user, dispatch } = useContext(UserContext);
-
-    const handleLogout = () => {
-        dispatch({ type: 'LOGOUT' });
-    };
 
     return (
         <div>
@@ -91,15 +86,18 @@ const Navbar = ({ user, onLogout }) => {
                         <div className="counter"></div>
                     </div> */}
                        </div>
-                       <Link className='liste' to="/loginPage" ><button className="btn--connexion"><i className="fa-solid fa-user"></i> Connexion </button></Link>
+                      
                        {user ? (
-        <>
-          <span>Welcome, {user.name}</span>
-          <button onClick={onLogout}>Logout</button>
-        </>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
+                        <>
+                          <div className='user__profil__box'>
+                          <p className='user__name'><i className="fa-solid fa-user"></i> {user.name}</p>
+                          <button className='user__btn__logout' onClick={onLogout}>Logout <i className="fa-solid fa-arrow-left"></i></button>
+                          </div>
+                        </>
+                      ) : (
+                        // <Link to="/login">Login</Link>
+                        <Link className='liste' to="/login" ><button className="btn--connexion"><i className="fa-solid fa-user"></i> Connexion </button></Link>
+                      )}
                   </div>
           </div>
          </div>
