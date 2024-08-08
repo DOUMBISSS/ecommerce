@@ -1,32 +1,23 @@
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "./Footer";
-import ProductList from '../components/ProductList';
-import Cart from '../components/Cart';
-import Favorites from '../components/Favorites';
 import React, { useEffect, useState, useContext } from 'react';
-import { fetchProducts } from '../services/productService';
-import Product from '../components/Product';
+import { Link } from "react-router-dom";
 import { CartContext } from '../context/CartContext';
 import { FavoritesContext } from '../context/FavoritesContext';
-import Notification from "../components/Notification";
-import axios from "axios";
+import Footer from "./Footer";
+import { Blocks } from "react-loader-spinner";
 
 export default function Smartphones() {
     const [dis, setDis] = useState(true);
-    const [filter, setFilter] = useState(false);
     const [items, setItems] = useState([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedBrands, setSelectedBrands] = useState([]);
     const [priceRange, setPriceRange] = useState([0, 100000]);
     const [sortOrder, setSortOrder] = useState('asc');
     const [recommendedProducts, setRecommendedProducts] = useState([]);
     const { dispatch: cartDispatch } = useContext(CartContext);
     const { dispatch: favoritesDispatch } = useContext(FavoritesContext);
-    const [notification, setNotification] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -36,9 +27,14 @@ export default function Smartphones() {
                 setItems(items);
                 setProducts(items);
                 setCategories([...new Set(items.map(item => item.categorie))]);
-                setRecommendedProducts(items.filter(item => item.isRecommended)); // Assuming `isRecommended` property
+                setBrands([...new Set(items.map(item => item.brand))]);  // Extract unique brands
+                setRecommendedProducts(items.filter(item => item.isRecommended));
+                setLoading(false);
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                setLoading(false);
+            });
     }, []);
 
     const filterResult = () => {
@@ -46,6 +42,10 @@ export default function Smartphones() {
 
         if (selectedCategories.length > 0) {
             filteredData = filteredData.filter(item => selectedCategories.includes(item.categorie));
+        }
+
+        if (selectedBrands.length > 0) {
+            filteredData = filteredData.filter(item => selectedBrands.includes(item.brand));
         }
 
         filteredData = filteredData.filter(item => item.price >= priceRange[0] && item.price <= priceRange[1]);
@@ -58,13 +58,21 @@ export default function Smartphones() {
 
     useEffect(() => {
         filterResult();
-    }, [selectedCategories, priceRange, sortOrder]);
+    }, [selectedCategories, selectedBrands, priceRange, sortOrder]);
 
     const handleCategoryChange = (category) => {
         setSelectedCategories(prevCategories => 
             prevCategories.includes(category) 
             ? prevCategories.filter(cat => cat !== category) 
             : [...prevCategories, category]
+        );
+    };
+
+    const handleBrandChange = (brand) => {
+        setSelectedBrands(prevBrands => 
+            prevBrands.includes(brand) 
+            ? prevBrands.filter(br => br !== brand) 
+            : [...prevBrands, brand]
         );
     };
 
@@ -88,43 +96,57 @@ export default function Smartphones() {
                         <img src="https://tpc.googlesyndication.com/simgad/15905478928241312474" alt="" />
                     </div>
                     <p>Découvrez les nouveautés de notre collection pour homme...</p>
-                    <div className="col-12 col-md-12">
-                        <p className="container--header">Nos partenaires</p>
-                        <div className="section__partenaires">
-                            {/* Partner logos */}
+                    <div className="section__partner">
+                            <p className="container--header">Nos partenaires </p>
+                            <div className="section__partenaires">
+                                <div className="section__partenaires__content">
+                                    <img src="https://img.freepik.com/icones-gratuites/mac-os_318-10374.jpg" alt="" />
+                                    <img src="https://www.1min30.com/wp-content/uploads/2018/10/Embl%C3%A8me-Huawei.jpg" alt="" />
+                                    <img src="https://logos-marques.com/wp-content/uploads/2021/01/logo-Xiaomi.jpg" alt="" />
+                                    <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/20927489-infinix-marque-logo-telephone-symbole-nom-noir-conception-chine-mobile-vecteur-illustration-gratuit-vectoriel.jpg" alt="" />
+                                    <img src="https://logos-marques.com/wp-content/uploads/2022/04/Oppo-logo.png" alt="" />
+                                    <img src="https://images.samsung.com/is/image/samsung/assets/africa_fr/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$" alt="" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Wiko_logo.svg/1200px-Wiko_logo.svg.png" alt="" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <div className="container-contents">
                     <div className="sidebar">
                         <div className="filter--container">
-                            <h4>CATÉGORIE</h4>
+                        <h6 className="filter__title">Categories</h6>
                             <h6>{products.length} résultat(s)</h6>
                             <button className="btn__all" onClick={() => setProducts(items)}>All</button>
-                            <h6 className="filter__title">Categories</h6>
+                           
                             <div className="filter-group">
-                                <div className="filter-group-content">
                                 {categories.map(cat => (
                                     <label key={cat} className="label__key">
                                         <input type="checkbox" checked={selectedCategories.includes(cat)} onChange={() => handleCategoryChange(cat)}  />
                                         {cat}
                                     </label>
                                 ))}
-                                </div>
-                            </div >
+                            </div>
+                            <h6 className="filter__title">Brands</h6>
+                            <div className="filter-group">
+                                {brands.map(brand => (
+                                    <label key={brand} className="label__key">
+                                        <input type="checkbox" checked={selectedBrands.includes(brand)} onChange={() => handleBrandChange(brand)}  />
+                                        {brand}
+                                    </label>
+                                ))}
+                            </div>
                             <h6 className="filter__title">Price Range</h6>
                             <div className="filter-group">
                                 <input type="number"  name="min" value={priceRange[0]} onChange={handlePriceRangeChange}  placeholder="Min price" />
                                 <input type="number" name="max" value={priceRange[1]} onChange={handlePriceRangeChange} placeholder="Max price" />
                             </div>
-                            <h6 className="filter__title">Sort By</h6>
-                            
+                            {/* <h6 className="filter__title">Sort By</h6>
                             <div className="filter-group">
                                 <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
                                     <option value="asc">Price Low to High</option>
                                     <option value="desc">Price High to Low</option>
                                 </select>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="part__products">
@@ -141,13 +163,22 @@ export default function Smartphones() {
                                 </div>
                             </div>
                         ) : (
-                           <div>
-                             <div className="container__sort__filter">
+                            <div>
+                                <div className="container__sort__filter">
                                 <div className="content__sort__filter">
-                              
+                                <h6 className="filter__title">Sort By</h6>
+                            <div className="filter-group">
+                                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                </select>
+                            </div>
                                 </div>
                             </div>
-                            <div className="part__accessories">
+                            {loading ? ( <div className='load'>
+       <Blocks  visible={true}height="100" width="100%" ariaLabel="blocks-loading" wrapperStyle={{}} wrapperClass="blocks-wrapper"/>
+       </div>
+    ) :( <div className="part__accessories">
                                 {products.map(item => (
                                     <div key={item._id} className='featured__product__cards'>
                                         <div className='product__cards__header'>
@@ -175,9 +206,11 @@ export default function Smartphones() {
                                     </div>
                                 ))}
                             </div>
+                               )
+                            }
                            </div>
                         )}
-                        <div className="recommended-products">
+                        {/* <div className="recommended-products">
                             <h3>Recommended Products</h3>
                             {recommendedProducts.map(item => (
                                 <div key={item._id} className='recommended__product__card'>
@@ -186,12 +219,14 @@ export default function Smartphones() {
                                     <p>{item.price} FCFA</p>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
+               
               
             </div>
             <Footer />
         </div>
     );
 }
+                           

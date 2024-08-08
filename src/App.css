@@ -2273,11 +2273,17 @@ select{
   padding: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: end;
+
 }
 /* .content__sort__filter{
   width: 20%;
 } */
+.section__partner{
+  width: 100%;
+  padding: 0.5rem;
+  /* margin-top: 1rem;
+  border-top: 1px solid gainsboro; */
+}
 @media only screen and (max-width:576px) {
   header{
     height: 70px;
