@@ -5,14 +5,14 @@ import { CartContext } from '../context/CartContext';
 
 
 export default function Identification (){
-  const keys = ["title","categorie","reference"];
+  const keys = ["title","label","reference"];
   const [search,setSearch]=useState("");
   const [items, setItems] = useState([]);
   const [products, setProducts] = useState(items);
   const { dispatch: cartDispatch } = useContext(CartContext);
 
   useEffect(() => {
-    fetch('https://back-doc.onrender.com/products')
+    fetch('https://back-fodex-ecommerce.onrender.com/products')
         .then(response => response.json())
         .then(items => { setItems(items);
         })
@@ -58,15 +58,15 @@ console.log(items)
                 <p className='sales'>{item.title}</p>
                    <div className='featured__product__cards__header__images'>
                    {/* <Link to={`/detail/${item._id}`}><img src={`${process.env.PUBLIC_URL}/${item.image}`} alt="" /></Link> */}
-                    <img src={item.image} alt="" />
+                    <img src={item.img} alt="" />
                    </div>
                 </div>
                 <div className='featured__product__cards__body'>
                         {/* <h5 className='product__title'>{article.title}</h5> */}
                         <p className='product__desc'>{item.description}</p>
-                        <p className='brand'>{item.marque}</p>
+                        <p className='brand'>{item.label}</p>
                        <h5 className='product__categorie'>Smartphone</h5>
-                       <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
+                       <p className="reference">{item.reference}</p>
                         <p className="info">2 en stock</p>
                        <p className='product__price'>{item.price} FCFA</p>
                        <div className='button--block'>

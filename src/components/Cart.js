@@ -33,7 +33,7 @@ const Cart = () => {
             <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><Link to='/'>Home</Link></li>
-                <li class="breadcrumb-item active" aria-current="page">Smartphone</li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
             </ol>
             </nav>
             <h2>Votre panier</h2>

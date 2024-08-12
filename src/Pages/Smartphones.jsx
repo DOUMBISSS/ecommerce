@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { CartContext } from '../context/CartContext';
 import { FavoritesContext } from '../context/FavoritesContext';
@@ -6,44 +6,42 @@ import Footer from "./Footer";
 import { Blocks } from "react-loader-spinner";
 
 export default function Smartphones() {
+    const [filter,setFilter] = useState(false);
     const [dis, setDis] = useState(true);
     const [items, setItems] = useState([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
-    const [groups, setGroups] = useState([]);
+    const [groups, setGroups] = useState(['Smartphone','Electronique', 'Informatiques','Jeux Vidéo & Consoles']);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedBrands, setSelectedBrands] = useState([]);
-    const [selectedGroup, setSelectedGroup] = useState('Smartphone');
+    const [selectedGroup, setSelectedGroup] = useState('Smartphone'); // Default to "Électronique"
     const [priceRange, setPriceRange] = useState([0, 10000000]);
-    const [sortOrder, setSortOrder] = useState('desc');
+    const [sortOrder, setSortOrder] = useState('asc');
     const [recommendedProducts, setRecommendedProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const { dispatch: cartDispatch } = useContext(CartContext);
     const { dispatch: favoritesDispatch } = useContext(FavoritesContext);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('https://back-fodex-ecommerce.onrender.com/products')
             .then(response => response.json())
             .then(items => {
-                const uniqueGroups = [...new Set(items.map(item => item.groupe))];
-                setItems(items);
-                setGroups(uniqueGroups);
-                setProducts(items.filter(item => item.groupe === selectedGroup));
-                setCategories([...new Set(items.filter(item => item.groupe === selectedGroup).map(item => item.categorie))]);
-                setBrands([...new Set(items.filter(item => item.groupe === selectedGroup).map(item => item.label))]);
-                setRecommendedProducts(items.filter(item => item.isRecommended));
+                const filteredItems = items.filter(item => item.groupe === 'Smartphone' || item.groupe === 'Electronique' || item.groupe === 'Informatiques' || item.groupe === 'Jeux Vidéo & Consoles');
+                setItems(filteredItems);
+                setProducts(filteredItems.filter(item => item.groupe === selectedGroup));
+                setCategories([...new Set(filteredItems.filter(item => item.groupe === selectedGroup).map(item => item.categorie))]);
+                setBrands([...new Set(filteredItems.filter(item => item.groupe === selectedGroup).map(item => item.label))]);
+                setRecommendedProducts(filteredItems.filter(item => item.isRecommended));
                 setLoading(false);
             })
             .catch(error => {
                 console.error('Error:', error);
-                setError('Failed to fetch products. Please try again later.');
                 setLoading(false);
             });
     }, [selectedGroup]);
 
-    const filterResult = useCallback(() => {
+    const filterResult = () => {
         let filteredData = items.filter(item => item.groupe === selectedGroup);
 
         if (selectedCategories.length > 0) {
@@ -68,13 +66,13 @@ export default function Smartphones() {
 
         setProducts(filteredData);
         setDis(false);
-    }, [items, selectedGroup, selectedCategories, selectedBrands, priceRange, sortOrder]);
+    };
 
     useEffect(() => {
         filterResult();
-    }, [filterResult]);
+    }, [selectedCategories, selectedBrands, selectedGroup, priceRange, sortOrder]);
 
-    const handleCategoryChange = category => {
+    const handleCategoryChange = (category) => {
         setSelectedCategories(prevCategories =>
             prevCategories.includes(category)
                 ? prevCategories.filter(categorie => categorie !== category)
@@ -82,7 +80,7 @@ export default function Smartphones() {
         );
     };
 
-    const handleBrandChange = brand => {
+    const handleBrandChange = (brand) => {
         setSelectedBrands(prevBrands =>
             prevBrands.includes(brand)
                 ? prevBrands.filter(br => br !== brand)
@@ -90,13 +88,11 @@ export default function Smartphones() {
         );
     };
 
-    const handleGroupChange = group => {
+    const handleGroupChange = (group) => {
         setSelectedGroup(group);
-        setSelectedCategories([]);
-        setSelectedBrands([]);
     };
 
-    const handlePriceRangeChange = event => {
+    const handlePriceRangeChange = (event) => {
         const { value, name } = event.target;
         setPriceRange(prevRange => name === 'min'
             ? [Number(value), prevRange[1]]
@@ -104,12 +100,20 @@ export default function Smartphones() {
         );
     };
 
+    const closeFilter = ()=> {
+        setFilter (false)
+    }
+    const showFilter =()=>{
+        setFilter (true)
+    }
+
     return (
         <div>
             <div className='container'>
                 <div className="bread">
                     <p>Accueil <i className="fa-solid fa-angle-right"></i> {selectedGroup}</p>
                 </div>
+              
                 <h2 className="header__accessories">{selectedGroup}</h2>
                 <div className="part__products__header">
                     <div className="part__products__header__images">
@@ -135,17 +139,31 @@ export default function Smartphones() {
                     <div className="sidebar">
                         <div className="filter--container">
                             <h6>{products.length} résultat(s)</h6>
-                            <button className="btn__all" onClick={() => { setSelectedGroup('Smartphone'); setProducts(items.filter(item => item.groupe === 'Smartphone')); }}>All</button>
-                            <h6 className="filter__title"> Groupes</h6>
+                            {/* <button className="btn__all" onClick={() => { setSelectedGroup('Electronique'); setProducts(items.filter(item => item.groupe === 'Électronique')); }}>All</button> */}
+                            <h6 className="filter__title"> Filtrer par :</h6>
                             <div className="filter-group">
                                 {groups.map((group, index) => (
                                     <label key={index} className="label__key">
-                                     <input type="radio" name="group" checked={selectedGroup === group} onChange={() => handleGroupChange(group)}/> {group} </label>))}
+                                        <input
+                                            type="checkbox"
+                                            name="group"
+                                            checked={selectedGroup === group}
+                                            onChange={() => handleGroupChange(group)}
+                                        />
+                                        {group}
+                                    </label>
+                                ))}
                             </div>
                             <h6 className="filter__title">Categories</h6>
                             <div className="filter-group">
-                                {categories.map((categorie, index) => ( <label key={index} className="label__key">
-                                        <input type="checkbox" checked={selectedCategories.includes(categorie)} onChange={() => handleCategoryChange(categorie)}/>{categorie}
+                                {categories.map((categorie, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedCategories.includes(categorie)}
+                                            onChange={() => handleCategoryChange(categorie)}
+                                        />
+                                        {categorie}
                                     </label>
                                 ))}
                             </div>
@@ -153,23 +171,41 @@ export default function Smartphones() {
                             <div className="filter-group">
                                 {brands.map((brand, index) => (
                                     <label key={index} className="label__key">
-                                        <input type="checkbox" checked={selectedBrands.includes(brand)} onChange={() => handleBrandChange(brand)}/> {brand} </label>))}
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedBrands.includes(brand)}
+                                            onChange={() => handleBrandChange(brand)}
+                                        />
+                                        {brand}
+                                    </label>
+                                ))}
                             </div>
                             <h6 className="filter__title">Price Range</h6>
                             <div className="filter-group">
-                                <input type="number" name="min" value={priceRange[0]} onChange={handlePriceRangeChange} placeholder="Min price" className="label__key"/>
-                                 <input type="number" name="max" value={priceRange[1]} onChange={handlePriceRangeChange} placeholder="Max price" className="label__key"/>
+                                <input
+                                    type="number"
+                                    name="min"
+                                    value={priceRange[0]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Min price"
+                                />
+                                <input
+                                    type="number"
+                                    name="max"
+                                    value={priceRange[1]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Max price"
+                                />
                             </div>
-                            {/* <h6 className="filter__title">Sort By</h6>
+                            <h6 className="filter__title">Sort By</h6>
                             <div className="filter-group">
                                 <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-                                <option value="asc">Price Low to High</option>
-                                <option value="desc">Price High to Low</option>
-                                <option value="nameAsc">Name A-Z</option>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
                                 </select>
-                                </div> */}
+                            </div>
+                        </div>
                     </div>
-                </div>
                 <div className="part__products">
                     {dis ? (
                         <div className="section__part__presentaions">
@@ -185,13 +221,7 @@ export default function Smartphones() {
                         </div>
                     ) : (
                         <div>
-                            {loading ? (
-                                <div className='load'>
-                                    <Blocks visible={true} height="100" width="100%" ariaLabel="blocks-loading" wrapperStyle={{}} wrapperClass="blocks-wrapper" />
-                                </div>
-                            ) : (
-                                <div>
-                                <div className="container__sort__filter">
+                            <div className="container__sort__filter">
                                    <div className="content__sort__filter">
                                    <div className="filter-group">
                                    <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
@@ -202,6 +232,104 @@ export default function Smartphones() {
                                </div>
                                    </div>
                                </div>
+
+                               
+                               <div className="filter" onMouseOver={showFilter}>
+                                <div className="box__filter">
+                                <i className="fa-solid fa-arrow-up-wide-short"></i>
+                                <p>Filtre</p>
+                                </div>
+                                <div>
+                                <div className="filter-group--display">
+                                   <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                    <option value="nameAsc">Name A-Z</option>
+                                    </select>
+                               </div>
+                                </div>
+                                </div>
+                <div className={filter ? "filterbar show--filterbar" : "filterbar" }>
+                        <div className='filterbar--content' onMouseLeave={closeFilter}>
+                        <h4>CATÉGORIE PAR PRODUIT</h4>
+                          <div className='btn--close--sidebar'onClick={closeFilter}> <i className="fa-solid fa-xmark"></i></div>         
+                          <div className='filter--sidebar'>
+                          <div className="filter--container">
+                            <h6>{products.length} résultat(s)</h6>
+                            {/* <button className="btn__all" onClick={() => { setSelectedGroup('Electronique'); setProducts(items.filter(item => item.groupe === 'Électronique')); }}>All</button> */}
+                            <h6 className="filter__title"> Filtrer par :</h6>
+                            <div className="filter-group">
+                                {groups.map((group, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            name="group"
+                                            checked={selectedGroup === group}
+                                            onChange={() => handleGroupChange(group)}
+                                        />
+                                        {group}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Categories</h6>
+                            <div className="filter-group">
+                                {categories.map((categorie, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedCategories.includes(categorie)}
+                                            onChange={() => handleCategoryChange(categorie)}
+                                        />
+                                        {categorie}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Marques</h6>
+                            <div className="filter-group">
+                                {brands.map((brand, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedBrands.includes(brand)}
+                                            onChange={() => handleBrandChange(brand)}
+                                        />
+                                        {brand}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Price Range</h6>
+                            <div className="filter-group">
+                                <input
+                                    type="number"
+                                    name="min"
+                                    value={priceRange[0]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Min price"
+                                />
+                                <input
+                                    type="number"
+                                    name="max"
+                                    value={priceRange[1]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Max price"
+                                />
+                            </div>
+                            <h6 className="filter__title">Sort By</h6>
+                            <div className="filter-group">
+                                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                            {loading ? (
+                                <div className='load'>
+                                    <Blocks visible={true} height="100" width="100%" ariaLabel="blocks-loading" wrapperStyle={{}} wrapperClass="blocks-wrapper" />
+                                </div>
+                            ) : (
                                 <div className="part__accessories">
                                     {products.map(item => (
                                         <div key={item._id} className='featured__product__cards'>
@@ -225,10 +353,8 @@ export default function Smartphones() {
                                         </div>
                                     ))}
                                 </div>
-                                </div>
                             )}
                         </div>
-                        
                     )}
                     {/* Uncomment if you want to display recommended products */}
                     {/* <div className="recommended-products">
@@ -243,7 +369,6 @@ export default function Smartphones() {
                     </div> */}
                 </div>
             </div>
-            
         </div>
         <Footer />
     </div>

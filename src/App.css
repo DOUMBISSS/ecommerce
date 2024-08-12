@@ -1698,17 +1698,27 @@ input[type='search']:hover{
   color: coral;
   cursor: pointer;
 }
-.filter{
-  display: none;
+.box__filter{
+  display: flex;
   padding: 0.7rem;
-  width: 80px;
+  width: 90px;
   align-items: center;
   justify-content: space-between;
   border: 1px solid gainsboro;
   border-radius: 0.7rem;
+  
+}
+.filter{
+  display: none;
+  padding: 0.7rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid gainsboro; */
+  border-radius: 0.7rem;
   margin-bottom: 2rem;
 }
-.filter > p{
+.box__filter > p{
   margin-bottom: 0 !important;
 }
 .filterbar {
@@ -1785,6 +1795,7 @@ input[type='search']:hover{
   padding: 1rem;
   width: 100%;
   height: 500px;
+  display: block;
 }
 .menu__content__liste{
   width: 100%;
@@ -2231,6 +2242,11 @@ padding: 0 5rem;
   display: block; */
   margin-bottom: 0.7rem;
 }
+.filter-group--display{
+  /* border: 1px solid gainsboro;
+  display: block; */
+  margin-bottom: 0.7rem;
+}
 .filter-group-content{
   width: 100%;
   /* border: 1px solid gainsboro; */
@@ -2348,6 +2364,12 @@ a.active {
   header{
     height: 70px;
   }
+  a {
+    padding: 0;
+  }
+  a.active {
+    padding: 0;
+  }
   .menu__content{
     padding: 0;
     width: 100%;
@@ -2362,10 +2384,10 @@ a.active {
     justify-content: flex-start;
   }
   .navbar--center{
-    width: 45%;
+    width: 35%;
   }
   .navbar--right{
-    width: 35%;
+    width: 45%;
     display: flex;
     justify-content: flex-end;
   }
@@ -2388,8 +2410,7 @@ a.active {
     align-items: center;
     display: flex;
     justify-content: center;
-    color: white;
-    /* color: rgb(15, 52, 90); */
+    color: rgb(15, 52, 90);
     cursor: pointer;
   }
   .logo--resp{
@@ -2417,17 +2438,22 @@ a.active {
   .header__bar{
     display: none;
   }
-  .icon--menu{
+  /* .icon--menu{
     width: 50%;
     height: 100%;
     font-size: 1.3rem;
     align-items: center;
     display: flex;
     justify-content: center;
-    color: white;
-    /* color: rgb(15, 52, 90); */
+    color: rgb(15, 52, 90);
     cursor: pointer;
-  }
+  } */
+  .articles{
+    width: 30%;
+   }
+   .articles--details{
+    width: 70%;
+   }
   .logo--resp{
     display: flex;
   }
@@ -2444,6 +2470,22 @@ a.active {
   .navbar--logo--resp img{
     width: 100%;
     height: 100%;
+  }
+  .featured__product__cards{
+    width: 185px;
+    height: 380px;
+    border: 1px solid gainsboro;
+    border-radius: 0.4rem;
+    padding: 0.7rem;
+    position: relative;
+    text-align: center;
+      /* text-align: center; */
+      margin: 0.5rem;
+      /* transform: scaleX(0);   */
+      transition: all .5s;
+  }
+  .container__sort__filter{
+    display: none;
   }
   .flyout{
     display: block;

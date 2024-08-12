@@ -33,7 +33,7 @@ const ProductDetail = () => {
         <div>
             <div className='container'>
                 <div className="bread">
-                    <p>Accueil <i className="fa-solid fa-angle-right"></i> Smartphones & Tablettes <i className="fa-solid fa-angle-right"></i> {product.title} </p>
+                    <p>Accueil <i className="fa-solid fa-angle-right"></i> {product.categorie} <i className="fa-solid fa-angle-right"></i> {product.title} </p>
                 </div>
                 <div className="container--header"></div>
                 <div className="container--article">
@@ -59,7 +59,7 @@ const ProductDetail = () => {
                     <div key={id} className="container--article--right--part">
                         <p className='label'>{product.title}</p>
                         <h4 className="name--article">{product.description}</h4>
-                        <p className='label'>Marque : {product.brand}</p>
+                        <p className='label'>Marque : {product.label}</p>
                         <p className='reference--article'>Référence: {product.reference}</p>
                         <p className='rating'>3 ratings</p>
                         <p className='availability'>En stock</p>

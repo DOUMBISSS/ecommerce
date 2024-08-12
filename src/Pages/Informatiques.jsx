@@ -5,7 +5,7 @@ import { FavoritesContext } from '../context/FavoritesContext';
 import Footer from "./Footer";
 import { Blocks } from "react-loader-spinner";
 
-export default function Smartphones() {
+export default function Informatiques() {
     const [dis, setDis] = useState(true);
     const [items, setItems] = useState([]);
     const [products, setProducts] = useState([]);
@@ -14,7 +14,7 @@ export default function Smartphones() {
     const [groups, setGroups] = useState([]); // Ajout de l'état pour les groupes
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedBrands, setSelectedBrands] = useState([]);
-    const [selectedGroup, setSelectedGroup] = useState(''); // Filtrer par défaut
+    const [selectedGroup, setSelectedGroup] = useState('Informatiques'); // Filtrer par défaut
     const [priceRange, setPriceRange] = useState([0, 10000000]);
     const [sortOrder, setSortOrder] = useState('asc');
     const [recommendedProducts, setRecommendedProducts] = useState([]);
@@ -27,10 +27,10 @@ export default function Smartphones() {
             .then(response => response.json())
             .then(items => {
                 setItems(items);
-                setProducts(items.filter(item => item.groupe === 'Jeux Vidéo & Consoles'));
-                setCategories([...new Set(items.filter(item => item.groupe === 'Jeux Vidéo & Consoles').map(item => item.categorie))]);
-                setBrands([...new Set(items.filter(item => item.groupe === 'Jeux Vidéo & Consoles').map(item => item.label))]);
-                setGroups([...new Set(items.filter(item => item.groupe === 'Jeux Vidéo & Consoles').map(item => item.groupe))]); // Extraire les groupes uniques
+                setProducts(items.filter(item => item.groupe === 'Informatiques'));
+                setCategories([...new Set(items.filter(item => item.groupe === 'Informatiques').map(item => item.categorie))]);
+                setBrands([...new Set(items.filter(item => item.groupe === 'Informatiques').map(item => item.label))]);
+                setGroups([...new Set(items.filter(item => item.groupe === 'Informatiques').map(item => item.groupe))]); // Extraire les groupes uniques
                 setRecommendedProducts(items.filter(item => item.isRecommended));
                 setLoading(false);
             })
@@ -128,7 +128,7 @@ export default function Smartphones() {
                                 {groups.map((group, index) => (
                                     <label key={index} className="label__key">
                                         <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="group"
                                             checked={selectedGroup === group}
                                             onChange={() => handleGroupChange(group)}

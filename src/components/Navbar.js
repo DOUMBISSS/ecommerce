@@ -14,11 +14,23 @@ const Navbar = ({ user, onLogout }) => {
 
   const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
+  const showProfil =()=>{
+    setDisplay(true)
+  }
+  const closeProfil =()=>{
+    setDisplay(false)
+  }
+  const showMenu = () =>{
+    setDisplay(true)
+}
+const affi = ()=> {
+  setDisplay (false)
+}
   return (
     <div>
       <div className='navbar'>
         <div className="navbar--left">
-          <div className='icon--menu'>
+          <div className='icon--menu' onClick={showMenu}>
             <i className="fa-solid fa-bars"></i>
           </div>
           <div className="navbar--logo">
@@ -66,16 +78,56 @@ const Navbar = ({ user, onLogout }) => {
           </div>
         </div>
       </div>
+
+      <div className={display ? "menu show--menu" : "menu"}>
+                    <div className='sidebar--menu'>
+                        <div className='btn--close--sidebar' onClick={affi}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </div>
+                        <div className='menu__content'>
+                          <div className='menu__content__liste'>
+                            <NavLink  to="/" className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-bars"></i> Accueil</NavLink>
+                          </div>
+                          <div className='menu__content__liste'>
+                            <NavLink  to='/Smartphones' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-mobile"></i> Smartphones & Informatiques & Electronique</NavLink>
+                          </div>
+                          <div className='menu__content__liste'>
+                            <NavLink  to='/Beauty' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-wand-magic-sparkles"></i> Mode & Accessoires & Beauté </NavLink>
+                          </div>
+                            <div className='menu__content__liste'>
+                            <NavLink  to='/houses' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i> Electroménager & Maison & Déco</NavLink>
+                            </div>
+                            <div className='menu__content__liste'>
+                            <NavLink  to="/favorites" className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-heart"></i> Favorites</NavLink>
+                            </div>
+                            <div className='menu__content__liste'>
+                              <NavLink  to='/store-all' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i>  Nos magasins</NavLink>
+                            </div>
+                            <div className='menu__content__liste'>
+                            <NavLink to='/recherche__piece' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-magnifying-glass"></i> Trouver la pièce</NavLink>
+                            </div>
+                          <div className="col-12 col-md-12">
+                            <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Cherchez un produit , une marque ou une categorie..." aria-label="Search"/>
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                          </form>
+                          </div>
+                        </div>
+                        </div>
+
+        </div>
+
+
       <div className='header__bar'>
         <NavLink  to="/" className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-bars"></i> Accueil</NavLink>
-        <NavLink  to='/Smartphones' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-mobile"></i> Smartphones & Tablettes</NavLink>
-        <NavLink  to='/informatiques' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-laptop"></i> Informatiques</NavLink>
-        <NavLink  to='/electromenager' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-layer-group"></i> Electroménager</NavLink>
-        <NavLink  to='/electronique' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-business-time"></i> Electronique</NavLink>
-        <NavLink  to='/fashion' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-person-dress"></i> Mode & Accessoires</NavLink>
-        <NavLink  to='/Beauty' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-wand-magic-sparkles"></i> Beauté & Hygiènes</NavLink>
+        <NavLink  to='/Smartphones' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-mobile"></i> Smartphones & Informatiques & Electronique</NavLink>
+        {/* <NavLink  to='/informatiques' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-laptop"></i> Informatiques</NavLink> */}
+        {/* <NavLink  to='/electromenager' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-layer-group"></i> Electroménager</NavLink> */}
+        {/* <NavLink  to='/electronique' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-business-time"></i> Electronique</NavLink> */}
+        {/* <NavLink  to='/fashion' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-person-dress"></i> Mode & Accessoires</NavLink> */}
+        <NavLink  to='/Beauty' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-wand-magic-sparkles"></i> Mode & Accessoires & Beauté</NavLink>
         {/* <NavLink  to='/game' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-gamepad"></i> Jeux Vidéo & Consoles</NavLink> */}
-        <NavLink  to='/houses' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i> Maison & Déco</NavLink>
+        <NavLink  to='/houses' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i> Electroménager & Maison & Déco</NavLink>
         <NavLink  to="/favorites" className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-heart"></i> Favorites</NavLink>
         <NavLink  to='/store-all' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i>  Nos magasins</NavLink>
         <NavLink to='/recherche__piece' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-magnifying-glass"></i> Trouver la pièce</NavLink>

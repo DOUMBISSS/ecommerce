@@ -71,8 +71,6 @@ export default function Climatisation (){
         <div className="bread">
                         <p>Accueil <i class="fa-solid fa-angle-right"></i> Climatisation</p>
                 </div>
-    
-
                 <div>
              <div className="filter" onMouseOver={showFilter}>
                         <i className="fa-solid fa-arrow-up-wide-short"></i>
@@ -85,81 +83,7 @@ export default function Climatisation (){
                           <div className='filter--sidebar'>
                          <div className="filter--container">
                                 <h4>CATÉGORIE PAR PRODUIT</h4>
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingSeven">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-                        FORMAT
-                </button>
-                </h2>
-                <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                        <p className="btn__filter" onClick={()=>{filterResult('Visage')}}>Allège</p>
-                        <p className="btn__filter" onClick={()=>{filterResult('Rouge à Lèvres')}}>Armoire</p>
-                        <p className="btn__filter" onClick={()=>{filterResult('Visage')}}>Mural</p>
-                        <p className="btn__filter" onClick={()=>{filterResult('Rouge à Lèvres')}}>Portable</p>
-                </div>
-                </div>
-                </div>
-                <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        PUISSANCE MOTEUR
-                </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>1 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>1.5 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums femme')}}>15 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>2 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Deo')}}>3 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>4 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums femme')}}>5 CV</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>6 CV</p>
-                </div>
-                </div>
-                </div>
-                <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                        TECHNOLOGIE
-                </button>
-                </h2>
-                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                        <p className="btn__filter" onClick={()=>{filterResult('Jouets')}}>INVERTER</p>
-                        <p className="btn__filter" onClick={()=>{filterResult('Préservatifs')}}>Quatro inverter</p>
-                </div>
-                </div>
-                </div>
-
-                {/* <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Default checkbox
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Default checkbox
-                    </label>
-                    </div> */}
-
-                <p className="title__cat">Autres categories</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>Télévision</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums femme')}}>Audios et Hifi</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>Climatisation</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Deo')}}>Chauffage et traitement d'air</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>Réfrigerateur</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums femme')}}>Congélateur</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>Cuisine et Maison</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Deo')}}>Lavage et Entretien</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Deo')}}>Accessoires</p>
-                        <p className="btn__filter"  onClick={()=>{filterResult('Parfums homme')}}>Réfroidisseur</p>
-
-                </div>
+                              
                                 </div>
                                     </div>
                                 </div>
