@@ -46,7 +46,7 @@ const Navbar = ({ user, onLogout }) => {
 
         <div className="navbar--right">
           <div className="navbar--right--content">
-            <NavLink className='liste' to="/store-all"><i className="fa-solid fa-house"></i>  Nos magasins</NavLink>
+            {/* <NavLink className='liste' to="/store-all"><i className="fa-solid fa-house"></i>  Nos magasins</NavLink> */}
             <div className='icons'>
               <div>
                 <NavLink to="/cart"><i className="fa-solid fa-cart-shopping"></i> </NavLink>
@@ -74,9 +74,10 @@ const Navbar = ({ user, onLogout }) => {
         <NavLink  to='/electronique' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-business-time"></i> Electronique</NavLink>
         <NavLink  to='/fashion' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-person-dress"></i> Mode & Accessoires</NavLink>
         <NavLink  to='/Beauty' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-wand-magic-sparkles"></i> Beauté & Hygiènes</NavLink>
-        <NavLink  to='/game' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-gamepad"></i> Jeux Vidéo & Consoles</NavLink>
+        {/* <NavLink  to='/game' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-gamepad"></i> Jeux Vidéo & Consoles</NavLink> */}
         <NavLink  to='/houses' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i> Maison & Déco</NavLink>
         <NavLink  to="/favorites" className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-heart"></i> Favorites</NavLink>
+        <NavLink  to='/store-all' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-house"></i>  Nos magasins</NavLink>
         <NavLink to='/recherche__piece' className={({ isActive }) => isActive ? 'active' : ''}><i className="fa-solid fa-magnifying-glass"></i> Trouver la pièce</NavLink>
       </div>
     </div>

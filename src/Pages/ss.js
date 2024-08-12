@@ -168,7 +168,12 @@ const [isRecommended, setIsRecommended] = useState(false);
                            <div>
                              <div className="container__sort__filter">
                                 <div className="content__sort__filter">
-                              
+                                <div className="filter-group">
+                                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                </select>
+                            </div>
                                 </div>
                             </div>
                             <div className="part__accessories">

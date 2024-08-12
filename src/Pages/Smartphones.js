@@ -136,11 +136,11 @@ export default function Smartphones() {
                         <div className="filter--container">
                             <h6>{products.length} résultat(s)</h6>
                             <button className="btn__all" onClick={() => { setSelectedGroup('Smartphone'); setProducts(items.filter(item => item.groupe === 'Smartphone')); }}>All</button>
-                            <h6 className="filter__title">Groupes</h6>
+                            <h6 className="filter__title"> Groupes</h6>
                             <div className="filter-group">
                                 {groups.map((group, index) => (
                                     <label key={index} className="label__key">
-                                     <input type="radio" name="group" checked={selectedGroup === group} onChange={() => handleGroupChange(group)}/>{group}</label>))}
+                                     <input type="radio" name="group" checked={selectedGroup === group} onChange={() => handleGroupChange(group)}/> {group} </label>))}
                             </div>
                             <h6 className="filter__title">Categories</h6>
                             <div className="filter-group">
