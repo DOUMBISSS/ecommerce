@@ -1724,7 +1724,7 @@ input[type='search']:hover{
 .filterbar {
   position: fixed;
   width: 300px;
-  height: 100vh;
+  height: 100%;
   top: 0;
   left: -500px;
   /* padding: 0.5rem; */
@@ -1735,6 +1735,7 @@ input[type='search']:hover{
   transition: ease-in-out .5s;
   box-shadow: 0 0 9px 5px black;
   background-color:#fff;
+  padding: 0.7rem;
 }
 .show--filterbar{
   left: 0;
@@ -1742,7 +1743,7 @@ input[type='search']:hover{
 }
 .filterbar--content{
   width: 90%;
-  height: 90%;
+  height: 100%;
 }
 .filter--sidebar{
   display: none;
@@ -2473,16 +2474,7 @@ a.active {
   }
   .featured__product__cards{
     width: 185px;
-    height: 380px;
-    border: 1px solid gainsboro;
-    border-radius: 0.4rem;
-    padding: 0.7rem;
-    position: relative;
-    text-align: center;
-      /* text-align: center; */
-      margin: 0.5rem;
-      /* transform: scaleX(0);   */
-      transition: all .5s;
+    height: 385px;
   }
   .container__sort__filter{
     display: none;
@@ -2522,14 +2514,10 @@ a.active {
   }
   .mb__container{
     width: 100%;
-    padding: 0.7rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 3px solid rgb(15, 52, 90);
+    display: block;
   }
   .mb__block__button{
-    width: 45%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2545,6 +2533,20 @@ a.active {
     padding: 0.5rem;
     font-size: 0.7rem;
   }
+  .section__comment__container{
+    padding: 0;
+    }
+.section__comment__content{
+        display: block;
+        /* border: 1px solid coral; */
+      }
+.section__comment__left__part{
+        width: 100%;
+        }
+ .section__comment__right__part{
+          width: 100%;
+          }
+
   .section__news__products{
     width: 100%;
     margin: 1rem 0;
@@ -2682,23 +2684,24 @@ a.active {
   }
   .container--article{
     width: 100%;
-    height: 70vh;
+    height: 100vh;
     padding:0;
     display: block;
     margin-top: 2rem;
   }
   .container--article--left--part{
     width: 100%;
-    height:60%;
+    height:50%;
   }
   .container--article--right--part{
     width: 100%;
-    height:40%;
+    height:50%;
     padding: 1rem;
+    text-align: center;
   }
   .container--article--left--part--content{
-    width: 60%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     /* border: 1px solid coral; */
   }
   .container--article--left--part--container--image{

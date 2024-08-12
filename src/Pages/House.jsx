@@ -21,6 +21,7 @@ export default function House () {
     const { dispatch: cartDispatch } = useContext(CartContext);
     const { dispatch: favoritesDispatch } = useContext(FavoritesContext);
     const [loading, setLoading] = useState(true);
+    const [filter,setFilter] = useState(false);
 
     useEffect(() => {
         fetch('https://back-fodex-ecommerce.onrender.com/products')
@@ -98,6 +99,13 @@ export default function House () {
             : [prevRange[0], Number(value)]
         );
     };
+
+    const closeFilter = ()=> {
+        setFilter (false)
+    }
+    const showFilter =()=>{
+        setFilter (true)
+    }
 
     return (
         <div>
@@ -223,6 +231,100 @@ export default function House () {
                                </div>
                                    </div>
                                </div>
+
+                               <div className="filter" onMouseOver={showFilter}>
+                                <div className="box__filter">
+                                <i className="fa-solid fa-arrow-up-wide-short"></i>
+                                <p>Filtre</p>
+                                </div>
+                                <div>
+                                <div className="filter-group--display">
+                                   <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                    <option value="nameAsc">Name A-Z</option>
+                                    </select>
+                               </div>
+                                </div>
+                                </div>
+
+                <div className={filter ? "filterbar show--filterbar" : "filterbar" }>
+                        <div className='filterbar--content' onMouseLeave={closeFilter}>
+                        <h4>CATÉGORIE PAR PRODUIT</h4>
+                          <div className='btn--close--sidebar'onClick={closeFilter}> <i className="fa-solid fa-xmark"></i></div>         
+                          <div className='filter--sidebar'>
+                          <div className="filter--container">
+                            <h6>{products.length} résultat(s)</h6>
+                            {/* <button className="btn__all" onClick={() => { setSelectedGroup('Electronique'); setProducts(items.filter(item => item.groupe === 'Électronique')); }}>All</button> */}
+                            <h6 className="filter__title"> Filtrer par :</h6>
+                            <div className="filter-group">
+                                {groups.map((group, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            name="group"
+                                            checked={selectedGroup === group}
+                                            onChange={() => handleGroupChange(group)}
+                                        />
+                                        {group}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Categories</h6>
+                            <div className="filter-group">
+                                {categories.map((categorie, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedCategories.includes(categorie)}
+                                            onChange={() => handleCategoryChange(categorie)}
+                                        />
+                                        {categorie}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Marques</h6>
+                            <div className="filter-group">
+                                {brands.map((brand, index) => (
+                                    <label key={index} className="label__key">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedBrands.includes(brand)}
+                                            onChange={() => handleBrandChange(brand)}
+                                        />
+                                        {brand}
+                                    </label>
+                                ))}
+                            </div>
+                            <h6 className="filter__title">Price Range</h6>
+                            <div className="filter-group">
+                                <input
+                                    type="number"
+                                    name="min"
+                                    value={priceRange[0]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Min price"
+                                />
+                                <input
+                                    type="number"
+                                    name="max"
+                                    value={priceRange[1]}
+                                    onChange={handlePriceRangeChange}
+                                    placeholder="Max price"
+                                />
+                            </div>
+                            <h6 className="filter__title">Sort By</h6>
+                            <div className="filter-group">
+                                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                                    <option value="asc">Price Low to High</option>
+                                    <option value="desc">Price High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        
                             {loading ? (
                                 <div className='load'>
                                     <Blocks visible={true} height="100" width="100%" ariaLabel="blocks-loading" wrapperStyle={{}} wrapperClass="blocks-wrapper" />

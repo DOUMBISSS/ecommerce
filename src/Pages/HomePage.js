@@ -75,12 +75,11 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Cuisinière</h5>
-                               <p className='product__desc'> GAZINIERE 4 FEUX - NASGC-50X50S-CTZ</p>
+                               <p className='product__desc'> GAZINIERE 4 FEUX</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
                                 <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -95,12 +94,11 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Cuisinière</h5>
-                               <p className='product__desc'> GAZINIERE 4 FEUX - NASGC-50X50S-CTZ</p>
+                               <p className='product__desc'> GAZINIERE 4 FEUX</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
                                 <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -117,10 +115,9 @@ useEffect(() => {
                                <h5 className='product__categorie'>Chaudière </h5>
                                <p className='product__desc'>Chaudière 5L</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
                                 <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -135,12 +132,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Réfrigerateur</h5>
-                               <p className='product__desc'>REFRIGERATEUR QUATRE PORTES 522L NET- KNASF4-64.4DS</p>
+                               <p className='product__desc'>REFRIGERATEUR 4 PORTES 522L </p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -185,12 +180,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Climatisation</h5>
-                               <p className='product__desc'> SPLIT 9.000 BTU R410A - NAS-J09-N1</p>
+                               <p className='product__desc'> SPLIT 9.000 BTU R410A</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -205,12 +198,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Apple</p>
                                <h5 className='product__categorie'>Fer à repasser</h5>
-                               <p className='product__desc'>FER A REPASSER A VAPEUR 2200W - NAS-FR286ST</p>
+                               <p className='product__desc'>FER A REPASSER VAPEUR 2200W </p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -225,12 +216,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Apple</p>
                                <h5 className='product__categorie'>Télévision</h5>
-                               <p className='product__desc'>TV SMART LED VIDAA 50'' - 4K UHD NETFLIX - LED_NAS-J50FUS-VID</p>
+                               <p className='product__desc'>TV SMART LED VIDAA 50</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -245,12 +234,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Déshumidificateur d'air</h5>
-                               <p className='product__desc'>DÉSHUMIDIFICATEUR BLANC- NAS-M30DEN7</p>
+                               <p className='product__desc'>DÉSHUMIDIFICATEUR BLANC</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -277,12 +264,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Cuisinière</h5>
-                               <p className='product__desc'> GAZINIERE 4 FEUX - NASGC-50X50S-CTZ</p>
+                               <p className='product__desc'> GAZINIERE 4 FEUX</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -297,12 +282,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Cuisinière</h5>
-                               <p className='product__desc'> GAZINIERE 4 FEUX - NASGC-50X50S-CTZ</p>
+                               <p className='product__desc'> GAZINIERE 4 FEUX </p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -319,10 +302,8 @@ useEffect(() => {
                                <h5 className='product__categorie'>Chaudière </h5>
                                <p className='product__desc'>Chaudière 5L</p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
@@ -337,12 +318,10 @@ useEffect(() => {
                         <div className='featured__product__cards__body'>
                                 <p className='brand'>Nasco</p>
                                <h5 className='product__categorie'>Réfrigerateur</h5>
-                               <p className='product__desc'>REFRIGERATEUR QUATRE PORTES 522L NET- KNASF4-64.4DS</p>
+                               <p className='product__desc'>REFRIGERATEUR 4 PORTES 522L </p>
                                <p className='product__price'>15 000 FCFA</p>
-                               <p className="reference">Réf:ECMHDEDIPACCHCB3</p>
-                                <p className="info">2 en stock</p>
                                <div className='button--block'>
-                               <Link className='link__btn' to='/detail'><button className='btn__buy'>Acheter</button></Link>
+                               <button className='btn__buy'><Link className='link__btn' to=''></Link>Acheter</button>
                                <button className='btn__add'>+</button>
                                 </div>  
                         </div>
