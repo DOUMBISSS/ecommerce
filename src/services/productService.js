@@ -1,7 +1,7 @@
 // // src/services/productService.js
 import axios from 'axios';
 
-const API_URL = 'https://back-doc.onrender.com/products';
+const API_URL = 'https://back-fodex-ecommerce.onrender.com/products';
 
 export const fetchProducts = async () => {
     try {

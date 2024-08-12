@@ -53,7 +53,7 @@ const Cart = () => {
                                     <div className="cart--articles--descriptions">
                                         <div className="block--articles">
                                             <div className="articles">
-                                                <img src={item.image} alt="" />
+                                                <img src={item.img} alt="" />
                                             </div>
                         
                                             <div className="articles--details">
@@ -80,8 +80,8 @@ const Cart = () => {
                       <div className='main--orders--container--right--body'>
                             <div className='article__details__order'>
                                 <div className='article__details__order__content'>
-                                    <h5>Total:</h5>
-                                    <p className='article__total__price'>{totalAmount.toFixed(2)} F CFA </p>
+                                    <h5>Total</h5>
+                                    <p className='article__total__price'>{totalAmount} F CFA </p>
                                 </div>
                             </div>
                             <div className='user__part'>

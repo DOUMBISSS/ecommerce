@@ -33,7 +33,7 @@ const [selectedBrands, setSelectedBrands] = useState([]);
 const [isRecommended, setIsRecommended] = useState(false);
 
     useEffect(() => {
-        fetch('https://back-doc.onrender.com/products')
+        fetch('https://back-fodex-ecommerce.onrender.com/products')
             .then(response => response.json())
             .then(items => {
                 setItems(items);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://mayedo.onrender.com'; // Remplace par l'URL de ton API
+const API_URL = 'https://back-fodex-ecommerce.onrender.com/products'; // Remplace par l'URL de ton API
 
 export const loginUser = async (email, password) => {
   try {

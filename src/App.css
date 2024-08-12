@@ -241,6 +241,7 @@ span{
   /* background-color: #000; */
   background-color: rgb(15, 52, 90);
   border-top: 1px solid gainsboro;
+  margin-top: 2rem;
 }
 .footer__container{
   width: 100%;
@@ -421,7 +422,7 @@ animation: 3s alternate zoomInDown;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* position: relative; */
+    position: relative;
   }
 .sidebar{
     width: 20%;
@@ -429,7 +430,7 @@ animation: 3s alternate zoomInDown;
     position: sticky;
     top: 0;
     transition: all .4s ease-in-out;
-    height: 120vh;
+    height: 100%;
     /* box-shadow: 0 0 9px black; */
   }
   .para{
@@ -816,6 +817,7 @@ transition: ease-in 1.2s;
   text-align: center;
   border-radius: 0.3rem;
   font-size: 1rem;
+  padding: 0.5rem;
   background-color:rgb(15, 52, 90);
 }
 .link__btn:hover{
@@ -2263,6 +2265,7 @@ input[type="checkbox"]{
 }
 .filter__title{
   font-weight: bold;
+  text-align: start;
 }
 select{
   border: 1px solid gainsboro;
@@ -2283,6 +2286,63 @@ select{
   padding: 0.5rem;
   /* margin-top: 1rem;
   border-top: 1px solid gainsboro; */
+}
+a {
+  padding: 0.7rem;
+  text-decoration:none;
+  /* color: black; */
+  color:rgb(12, 52, 103);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+a.active {
+  padding: 0.7rem;
+  text-decoration:none;
+  color: coral;
+  /* color:rgb(12, 52, 103); */
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.container--article--left--part--content--image {
+  text-align: center;
+  margin-bottom: 1em;
+  border: 1px solid gainsboro;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border: 1px solid gainsboro;
+}
+
+.thumbnail-gallery {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  border: 1px solid gainsboro;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+  border: 1px solid gainsboro;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+  border: 2px solid #007bff;
+  
+}
+
+@media (max-width: 768px) {
+  .thumbnail-gallery {
+      flex-wrap: wrap;
+  }
 }
 @media only screen and (max-width:576px) {
   header{

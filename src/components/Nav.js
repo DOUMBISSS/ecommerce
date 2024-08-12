@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext';
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 
-const Navbar = ({ user, onLogout }) => {
+const Nav = ({ user, onLogout }) => {
   const [nav, setNav] = useState(false);
   const [cartShop, setCartShop] = useState(false);
   const [display, setDisplay] = useState(false);
