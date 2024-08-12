@@ -336,7 +336,7 @@ export default function Smartphones() {
                                             <div className='product__cards__header'>
                                                 <p className='sales'>{item.title}</p>
                                                 <div className='featured__product__cards__header__images'>
-                                                    <Link to={`/product/${item._id}`}><img src={item.img} alt="" /></Link>
+                                                    <Link to={`/product/${item._id}`}><img src={`${process.env.PUBLIC_URL}/${item.img}`}alt="" /></Link>
                                                 </div>
                                             </div>
                                             <div className='featured__product__cards__body'>
