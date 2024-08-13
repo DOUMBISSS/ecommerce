@@ -1716,7 +1716,7 @@ input[type='search']:hover{
   justify-content: space-between;
   /* border: 1px solid gainsboro; */
   border-radius: 0.7rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
 }
 .box__filter > p{
   margin-bottom: 0 !important;
@@ -2655,7 +2655,7 @@ a.active {
   }
   .part__accessories{
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
   }
   .container-contents {
     width: 100%;
