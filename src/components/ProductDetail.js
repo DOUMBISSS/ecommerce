@@ -71,9 +71,9 @@ const ProductDetail = () => {
                         </button>
                     </div>         
                 </div>
-                <div className='pub'>
+                {/* <div className='pub'>
                     <img src="https://tpc.googlesyndication.com/simgad/4694351202817707795" alt="" />
-                </div>
+                </div> */}
                 <div className='section__comment__container'>
                     <div className='section__comment__header'>
                         <h5 className='section__comment__title'>Commentaires clients vérifiés</h5>
