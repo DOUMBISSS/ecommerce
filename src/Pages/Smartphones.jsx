@@ -231,8 +231,8 @@ export default function Smartphones() {
                                </div>
 
                                
-                               <div className="filter" onMouseOver={showFilter}>
-                                <div className="box__filter">
+                               <div className="filter">
+                                <div className="box__filter" onMouseOver={showFilter}>
                                 <i className="fa-solid fa-arrow-up-wide-short"></i>
                                 <p>Filtre</p>
                                 </div>

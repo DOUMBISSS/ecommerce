@@ -668,7 +668,7 @@ transition: ease-in 1.2s;
   justify-content: space-between;
   flex-wrap: wrap;
   /* border: 1px solid coral; */
-  padding: 1rem;
+  padding: 0.5rem;
   border-top:1px solid rgb(15, 52, 90) ;
 }
 .featured__product__cards{
@@ -676,11 +676,11 @@ transition: ease-in 1.2s;
   height: 450px;
   border: 1px solid gainsboro;
   border-radius: 0.4rem;
-  padding: 0.7rem;
+  padding: 0.4rem;
   position: relative;
   text-align: center;
     /* text-align: center; */
-    margin: 0.5rem;
+    margin: 0.4rem;
     /* transform: scaleX(0);   */
     transition: all .5s;
 }
@@ -2473,8 +2473,8 @@ a.active {
     height: 100%;
   }
   .featured__product__cards{
-    width: 180px;
-    height: 380px;
+    width: 160px;
+    height: 370px;
   }
   .container__sort__filter{
     display: none;
@@ -2655,7 +2655,7 @@ a.active {
   }
   .part__accessories{
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
   }
   .container-contents {
     width: 100%;
