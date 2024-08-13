@@ -115,10 +115,6 @@ export default function Beauty () {
                 </div>
                 <h2 className="header__accessories">{selectedGroup}</h2>
                 <div className="part__products__header">
-                    <div className="part__products__header__images">
-                        <img src="https://tpc.googlesyndication.com/simgad/15905478928241312474" alt="" />
-                    </div>
-                    <p>Découvrez les nouveautés de notre collection pour homme...</p>
                     <div className="section__partner">
                         <p className="container--header">Nos partenaires </p>
                         <div className="section__partenaires">

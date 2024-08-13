@@ -116,10 +116,7 @@ export default function Smartphones() {
               
                 <h2 className="header__accessories">{selectedGroup}</h2>
                 <div className="part__products__header">
-                    <div className="part__products__header__images">
-                        <img src="https://tpc.googlesyndication.com/simgad/15905478928241312474" alt="" />
-                    </div>
-                    <p>Découvrez les nouveautés de notre collection pour homme...</p>
+ 
                     <div className="section__partner">
                         <p className="container--header">Nos partenaires </p>
                         <div className="section__partenaires">
@@ -207,7 +204,19 @@ export default function Smartphones() {
                         </div>
                     </div>
                 <div className="part__products">
-                   
+                    {dis ? (
+                        <div className="section__part__presentaions">
+                            <div className="part__presentaions">
+                                <div className="part__presentaions__pictures">
+                                    <img src="https://nasco.ci/assets/images/categories/banners/fridge_1.jpg" alt="" />
+                                </div>
+                            </div>
+                            <div className="section__part__presentaions__description">
+                                <h5 className="desc__header">Pourquoi acheter votre matériel informatique sur EasyShopping Côte d’Ivoire ?</h5>
+                                <p>L’informatique, encore appelé traitement automatique de l’information...</p>
+                            </div>
+                        </div>
+                    ) : (
                         <div>
                             <div className="container__sort__filter">
                                    <div className="content__sort__filter">
@@ -324,7 +333,7 @@ export default function Smartphones() {
                                             <div className='product__cards__header'>
                                                 <p className='sales'>{item.title}</p>
                                                 <div className='featured__product__cards__header__images'>
-                                                    <Link to={`/product/${item._id}`}> <img src={`${process.env.PUBLIC_URL}/${item.img}`} alt=""/></Link>
+                                                    <Link to={`/product/${item._id}`}> <img src={`${process.env.PUBLIC_URL}/${item.img}`} alt="" /></Link>
                                                 </div>
                                             </div>
                                             <div className='featured__product__cards__body'>
@@ -343,7 +352,7 @@ export default function Smartphones() {
                                 </div>
                             )}
                         </div>
-                   
+                    )}
                     {/* Uncomment if you want to display recommended products */}
                     {/* <div className="recommended-products">
                         <h3>Recommended Products</h3>
