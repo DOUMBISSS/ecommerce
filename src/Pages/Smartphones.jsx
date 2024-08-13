@@ -207,19 +207,7 @@ export default function Smartphones() {
                         </div>
                     </div>
                 <div className="part__products">
-                    {dis ? (
-                        <div className="section__part__presentaions">
-                            <div className="part__presentaions">
-                                <div className="part__presentaions__pictures">
-                                    <img src="https://nasco.ci/assets/images/categories/banners/fridge_1.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="section__part__presentaions__description">
-                                <h5 className="desc__header">Pourquoi acheter votre matériel informatique sur EasyShopping Côte d’Ivoire ?</h5>
-                                <p>L’informatique, encore appelé traitement automatique de l’information...</p>
-                            </div>
-                        </div>
-                    ) : (
+                   
                         <div>
                             <div className="container__sort__filter">
                                    <div className="content__sort__filter">
@@ -355,7 +343,7 @@ export default function Smartphones() {
                                 </div>
                             )}
                         </div>
-                    )}
+                   
                     {/* Uncomment if you want to display recommended products */}
                     {/* <div className="recommended-products">
                         <h3>Recommended Products</h3>
