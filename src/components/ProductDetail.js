@@ -40,7 +40,7 @@ const ProductDetail = () => {
                     <div className="container--article--left--part">
                         <div className="container--article--left--part--content">
                             <div className="container--article--left--part--content--image">  
-                                <img src={`${process.env.PUBLIC_URL}/${selectedImage}`} alt={product.title} className="main-image" />
+                                <img src={selectedImage} alt={product.title} className="main-image" />
                             </div> 
                             <div className="thumbnail-gallery">
                                 {product.images && product.images.map((img, index) => (
