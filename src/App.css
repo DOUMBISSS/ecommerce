@@ -2476,6 +2476,10 @@ a.active {
     width: 160px;
     height: 370px;
   }
+  .part__accessories{
+    width: 100%;
+    justify-content: space-around;
+  }
   .container__sort__filter{
     display: none;
   }
@@ -2652,10 +2656,6 @@ a.active {
   }
   .filter{
    display: flex;
-  }
-  .part__accessories{
-    width: 100%;
-    justify-content: center;
   }
   .container-contents {
     width: 100%;
