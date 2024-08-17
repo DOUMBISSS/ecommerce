@@ -14,6 +14,7 @@ const Cart = () => {
     // const [email,setEmail]=useState();
     const [number,setNumero]=useState();
     const [address,setAdresse]=useState();
+    const [ville,setVille]=useState();
     const [option,setOption]=useState();
 
     const handleName = (event)=>{
@@ -76,7 +77,7 @@ const Cart = () => {
                     customer_name: name,
                     customer_phone_number: number,
                     customer_address: address,
-                    customer_city: 'Abidjan',
+                    customer_city: ville,
                     customer_country: 'CM',
                     customer_state: 'Abidjan',
                     customer_zip_code: '00225',
@@ -92,12 +93,13 @@ const Cart = () => {
                                 name,
                                 address,
                                 number,
+                                ville,
                                 paymentStatus: data.status,
                                 transactionId: data.transaction_id,
                             },{
                                 headers: {'Content-Type': 'application/json',
                                             'Accept':'application/json',
-                                            'Access-Control-Allow-Origin': '*'   
+                                            'Access-Control-Allow-Origin': 'https://checkout.cinetpay.com'   
                                         }
                             });
     
@@ -195,6 +197,11 @@ const Cart = () => {
                                 <div class="col-md-6">
                                     <label for="validationCustom03" class="form-label">Addresse de livraison</label>
                                     <input type="text" class="form-control" id="validationCustom03" required value={address} onChange={handleAdresse}/>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="validationCustom03" class="form-label">Ville</label>
+                                    <input type="text" class="form-control" id="validationCustom03" required value={ville} onChange={handleAdresse}/>
                                 </div>
 
                                 <div class="col-md-4">
