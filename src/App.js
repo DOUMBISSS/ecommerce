@@ -31,6 +31,7 @@ import LogPage from './components/LogPage';
 import Register from './components/Register';
 import CategoryPage from './Pages/CategoryPage';
 import GroupPage from './Pages/GroupPage';
+import Return from './Pages/Return';
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -98,6 +99,7 @@ const App = () => {
                             <Route path="/register" element={<Register onRegister={handleRegister} />} />
                             <Route path="/group/:groupName" element={<GroupPage />} />
                             <Route path="/category/:categoryId" element={<CategoryPage />} />
+                            <Route path="/return" element={<Return/>} />
                         </Routes>
                     </Router>
                 </FavoritesContextProvider>

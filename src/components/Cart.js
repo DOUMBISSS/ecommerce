@@ -3,7 +3,8 @@ import { CartContext } from '../context/CartContext';
 import { FavoritesContext } from '../context/FavoritesContext';
 import Footer from "../Pages/Footer";
 import { Link } from 'react-router-dom';
-import Payment from './Payment';
+import Payment from '../components/Payment';
+import axios from 'axios';
 
 const Cart = () => {
     const { cart, dispatch } = useContext(CartContext);
@@ -11,8 +12,8 @@ const Cart = () => {
     const { dispatch: favoritesDispatch } = useContext(FavoritesContext);
     const [name,setName]= useState();
     // const [email,setEmail]=useState();
-    const [numero,setNumero]=useState();
-    const [adresse,setAdresse]=useState();
+    const [number,setNumero]=useState();
+    const [address,setAdresse]=useState();
     const [option,setOption]=useState();
 
     const handleName = (event)=>{
@@ -24,6 +25,105 @@ const Cart = () => {
       const handleNumero =(event)=>{
         setNumero(event.target.value)
     }
+
+    const handlePayment = async () => {
+        const transactionId = Math.floor(Math.random() * 100000000).toString();
+    
+        if (window.CinetPay) {
+            const CinetPay = window.CinetPay;
+    
+            try {
+                // Log to verify the values
+                console.log("CinetPay Configuration", {
+                    apikey: '29749441966ae1bf12ec802.60766348', // Ensure this is correct
+                    site_id: 5877184,
+                    notify_url: 'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
+                    return_url:'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
+                    close_after_response: true,
+                    mode: 'PRODUCTION'
+                });
+    
+                CinetPay.setConfig({
+                    apikey: '29749441966ae1bf12ec802.60766348', // Ensure this is correct
+                    site_id: 5877184,
+                    notify_url: 'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
+                    return_url: "https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d",
+                    close_after_response: true,
+                    mode: 'PRODUCTION'
+                });
+    
+                console.log("CinetPay Checkout Data", {
+                    transaction_id: transactionId,
+                    amount: totalAmount,
+                    currency: 'XOF',
+                    channels: 'ALL',
+                    description: 'Paiement de la commande',
+                    customer_name: name,
+                    customer_phone_number: number,
+                    customer_address: address,
+                    customer_city: 'Votre ville',
+                    customer_country: 'CM',
+                    customer_state: 'Votre état',
+                    customer_zip_code: 'Votre code postal',
+                });
+    
+                CinetPay.getCheckout({
+                    transaction_id: transactionId,
+                    amount: totalAmount,
+                    currency: 'XOF',
+                    channels: 'ALL',
+                    description: 'Paiement de commande',
+                    customer_name: name,
+                    customer_phone_number: number,
+                    customer_address: address,
+                    customer_city: 'Abidjan',
+                    customer_country: 'CM',
+                    customer_state: 'Abidjan',
+                    customer_zip_code: '00225',
+                   
+                });
+    
+                CinetPay.waitResponse(async (data) => {
+                    if (data.status === "ACCEPTED") {
+                        try {
+                            const response = await axios.post('https://back-fodex-ecommerce.onrender.com/payment', {
+                                cart,
+                                totalAmount,
+                                name,
+                                address,
+                                number,
+                                paymentStatus: data.status,
+                                transactionId: data.transaction_id,
+                            },{
+                                headers: {'Content-Type': 'application/json',
+                                            'Accept':'application/json',
+                                            'Access-Control-Allow-Origin': '*'   
+                                        }
+                            });
+    
+                            if (response.data.success) {
+                                alert('Payment successful and order validated');
+                            }
+                        } catch (error) {
+                            console.error('Order save error', error);
+                            alert('Error saving order');
+                        }
+                    } else {
+                        alert('Payment failed');
+                    }
+                });
+    
+                CinetPay.onError(function (data) {
+                    console.error('Payment error', data);
+                    alert('Payment error');
+                });
+            } catch (error) {
+                console.error('Payment error', error);
+                alert('Payment error');
+            }
+        }
+    };
+    
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -93,13 +193,13 @@ const Cart = () => {
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="validationCustom03" class="form-label">Addresse</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required value={adresse} onChange={handleAdresse}/>
+                                    <label for="validationCustom03" class="form-label">Addresse de livraison</label>
+                                    <input type="text" class="form-control" id="validationCustom03" required value={address} onChange={handleAdresse}/>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="validationCustom03" class="form-label">Nº Tel</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required value={numero} onChange={handleNumero}/>
+                                    <input type="text" class="form-control" id="validationCustom03" required value={number} onChange={handleNumero}/>
                                 </div>
                         </form>
                             </div>
@@ -113,7 +213,8 @@ const Cart = () => {
                                 </select>
                             </div>
                             </div> */}
-                               <Payment cart={cart} totalAmount={totalAmount} />
+                               {/* <Payment cart={cart} totalAmount={totalAmount} name={name} adresse={address} number={number}/> */}
+                               <button className='btn__payment' onClick={handlePayment}>Procéder au paiement</button>
                       </div>
                 </div>
         </div>     
@@ -127,3 +228,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
