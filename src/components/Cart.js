@@ -26,6 +26,9 @@ const Cart = () => {
       const handleNumero =(event)=>{
         setNumero(event.target.value)
     }
+    const handleVille =(event)=>{
+        setVille(event.target.value)
+    }
 
     const handlePayment = async () => {
         const transactionId = Math.floor(Math.random() * 100000000).toString();
@@ -41,7 +44,7 @@ const Cart = () => {
                     notify_url: 'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
                     return_url:'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
                     close_after_response: true,
-                    mode: 'PRODUCTION'
+                    mode: 'PRODUCTION',
                 });
     
                 CinetPay.setConfig({
@@ -50,19 +53,24 @@ const Cart = () => {
                     notify_url: 'https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d',
                     return_url: "https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d",
                     close_after_response: true,
-                    mode: 'PRODUCTION'
+                    mode: 'PRODUCTION',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept':'application/json',
+                        "Access-Control-Allow-Origin": 'https://checkout.cinetpay.com'
+                    }
                 });
     
                 console.log("CinetPay Checkout Data", {
                     transaction_id: transactionId,
                     amount: totalAmount,
                     currency: 'XOF',
-                    channels: 'ALL',
+                    channels: 'MOBILE_MONEY',
                     description: 'Paiement de la commande',
                     customer_name: name,
                     customer_phone_number: number,
                     customer_address: address,
-                    customer_city: 'Votre ville',
+                    customer_city: ville,
                     customer_country: 'CM',
                     customer_state: 'Votre état',
                     customer_zip_code: 'Votre code postal',
@@ -72,7 +80,7 @@ const Cart = () => {
                     transaction_id: transactionId,
                     amount: totalAmount,
                     currency: 'XOF',
-                    channels: 'ALL',
+                    channels: 'MOBILE_MONEY',
                     description: 'Paiement de commande',
                     customer_name: name,
                     customer_phone_number: number,
@@ -97,10 +105,11 @@ const Cart = () => {
                                 paymentStatus: data.status,
                                 transactionId: data.transaction_id,
                             },{
-                                headers: {'Content-Type': 'application/json',
-                                            'Accept':'application/json',
-                                            'Access-Control-Allow-Origin': 'https://checkout.cinetpay.com'   
-                                        }
+                                 headers: {
+                        'Content-Type': 'application/json',
+                        'Accept':'application/json',
+                        "Access-Control-Allow-Origin": 'https://checkout.cinetpay.com'
+                    }
                             });
     
                             if (response.data.success) {
@@ -125,6 +134,8 @@ const Cart = () => {
             }
         }
     };
+   
+
     
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -201,7 +212,7 @@ const Cart = () => {
 
                                 <div class="col-md-6">
                                     <label for="validationCustom03" class="form-label">Ville</label>
-                                    <input type="text" class="form-control" id="validationCustom03" required value={ville} onChange={handleAdresse}/>
+                                    <input type="text" class="form-control" id="validationCustom03" required value={ville} onChange={handleVille}/>
                                 </div>
 
                                 <div class="col-md-4">
